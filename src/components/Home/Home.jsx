@@ -17,7 +17,6 @@ export default function Home() {
       <ContentTwo></ContentTwo>
       <Testimonials></Testimonials>
       <AvailableDoctors></AvailableDoctors>
-      {/* <Doctors></Doctors> */}
     </div>
   )
 }
