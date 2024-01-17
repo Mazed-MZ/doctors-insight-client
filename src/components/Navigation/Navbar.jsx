@@ -1,6 +1,16 @@
+import { useContext } from 'react'
 import { Link } from 'react-router-dom'
+import { UserContext } from '../providers/AuthProviders'
 
 export default function Navbar() {
+
+    const { user, logout } = useContext(UserContext);
+
+    const handlelogout = () => {
+        logout()
+            .then(() => { })
+            .catch((error) => { console.error(error) })
+    }
 
     // ----->>> Theme Setup Code <<<---
     // const [theme, setTheme] = useState(localStorage.getItem("theme") ? localStorage.getItem("theme") : "light");
@@ -46,9 +56,10 @@ export default function Navbar() {
                             </details>
                         </li>
                         <li><a>Contact Us</a></li>
+                        <li><Link to="/login">Login</Link></li>
                     </ul>
                 </div>
-                <Link><img className='w-36 md:w-52' src="https://i.ibb.co/DfsPcGz/doctors-insight.png" alt="doctors-insight" border="0" /></Link>
+                <Link to="/"><img className='w-36 md:w-50' src="https://i.ibb.co/DfsPcGz/doctors-insight.png" alt="doctors-insight" border="0" /></Link>
             </div>
 
             {/* ----->> Large Device <<<--- */}
@@ -72,9 +83,32 @@ export default function Navbar() {
                     <li><a>Contact Us</a></li>
                 </ul>
             </div>
-            <div className="navbar-end">
-                <a className="btn md:text-xl">Login</a>
+            <div className="navbar-end hidden md:block">
+                <Link to="/login" className="btn bg-info text-white md:text-xl">Login</Link>
             </div>
+            {
+                user ? <div className="dropdown dropdown-end ml-28">
+                    <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar online">
+                        <div className="w-14 rounded-full">
+                            {
+                                user ? <img alt="Profile Photo" src={user.photoURL} /> : <span className='hidden'></span>
+                            }
+                        </div>
+                    </div>
+                    <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 md:text-black">
+                        <li>
+                            <Link to="/profile" className="justify-between">
+                                Profile
+                            </Link>
+                        </li>
+                        <li><Link to="myappointment">My Appointment</Link></li>
+                        <li><Link to="/admin">Admin Panal</Link></li>
+                        <li><Link to="myappointment">Prescription</Link></li>
+                        <li><Link to="myappointment">Settings</Link></li>
+                        <li><a onClick={handlelogout}>Logout</a></li>
+                    </ul>
+                </div> : <span className='hidden'></span>
+            }
         </div>
     )
 }

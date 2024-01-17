@@ -10,7 +10,7 @@ export default function ContentTwo() {
 
                 {/* ------>>>State Section<<<----- */}
                 <div className='md:pt-40 md:pb-18 backdrop-blur-sm bg-white/70 text-center hidden md:block'>
-                    <h1 className='text-4xl p-12'>Surgeons State</h1>
+                    <h1 className='text-4xl border-cyan-500 border-y border-x-8 md:text-5xl md:pr-30 md:pb-5 text-center m-8'>Surgeons State</h1>
                     <div className="stats shadow">
 
                         <div className="stat">

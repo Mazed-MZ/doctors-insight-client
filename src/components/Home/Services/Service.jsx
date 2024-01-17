@@ -2,7 +2,7 @@
 export default function Service() {
     return (
         <div className='md:pt-28 pt-12'>
-            <h1 className='text-4xl text-center md:pb-12'>Services We Provide</h1>
+            <h1 className='text-4xl text-center md:pb-12 border-cyan-500 border-y border-x-8 md:text-5xl md:pr-30 p-8 m-8'>Services We Provide</h1>
             <div className='md:grid md:grid-cols-3 md:pl-12 md:gap-20 grid gap-8 md:m-8 m-8'>
                 <div className="card card-compact bg-base-100 shadow-xl w-96">
                     <figure><img className='md:h-96 md:w-96' src="https://img.freepik.com/free-vector/dentist-hand-with-human-teeth-model_1308-93404.jpg?size=626&ext=jpg&ga=GA1.1.1826414947.1699488000&semt=ais" alt="Shoes" /></figure>

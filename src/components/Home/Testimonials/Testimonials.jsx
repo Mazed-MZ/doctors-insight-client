@@ -2,7 +2,7 @@
 export default function Testimonials() {
   return (
     <div className='md:pt-28 pt-12'>
-      <h1 className='text-4xl text-center md:pb-12'>What Our Patients Says</h1>
+      <h1 className='text-4xl text-center md:pb-12 border-cyan-500 border-y border-x-8 md:text-5xl md:pr-30 m-8 p-8'>What Our Patients Says</h1>
       <div className='md:grid md:grid-cols-3 md:gap-50 md:pl-20 md:pb-20 grid grid-row-2 gap-8 md:m-8 m-8'>
         <div className="w-96 bg-base-100 shadow-xl">
           <div className="card-body">

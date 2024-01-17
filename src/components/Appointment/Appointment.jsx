@@ -9,6 +9,7 @@ export default function Appointment() {
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
+    console.log(date)
   }
   return (
     <div>
