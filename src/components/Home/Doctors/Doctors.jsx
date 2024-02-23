@@ -1,6 +1,6 @@
 
 export default function Doctors({ docInfo }) {
-    const { image, name, email } = docInfo;
+    const { image, name, email, speciality } = docInfo;
     console.log(docInfo)
     return (
         <div>
@@ -12,6 +12,7 @@ export default function Doctors({ docInfo }) {
                 </figure>
                 <div className="card-body items-center text-center">
                     <h2 className="card-title">{name}</h2>
+                    <p className="italic">{speciality}</p>
                     <p>{email}</p>
                     <div className="card-actions">
                         <button className="btn btn-primary">Contact Now</button>

@@ -5,7 +5,7 @@ import 'react-calendar/dist/Calendar.css';
 export default function AppointmentHeader({ handleDateChange }) {
     return (
         <div className='bg-cover bg-[url("https://tediselmedical.com/wp-content/uploads/2023/07/tecnologia_ergonomia_quirofanos_pic01_20230804_tedisel_medical.jpg")]'>
-            <div className='bg-gradient-to-b bg-slate-300 bg-opacity-75 md:pl-56 md:pr-56 md:pt-20 p-8'>
+            <div className='bg-gradient-to-b bg-slate-300 bg-opacity-75 md:pl-56 md:pr-56 md:pt-28 pt-24 md:p-8'>
                 <h1 className='md:text-5xl pb-5 text-5xl text-center'>Make your appointment</h1>
                 <div className='md:flex '>
                     <div className='md:w-75 md:pt-18 p-8 text-center md:text-left'>

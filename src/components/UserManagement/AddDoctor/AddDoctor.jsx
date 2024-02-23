@@ -37,9 +37,10 @@ export default function Admin() {
     const handleSubmit = (event) => {
         const form = event.target;
         const name = form.name.value;
+        const speciality = form.speciality.value;
         const email = form.email.value;
         const image = form.image.value;
-        const doctorsFiles = { name, email, image }
+        const doctorsFiles = { name, speciality, email, image }
         console.log(doctorsFiles);
         fetch('http://localhost:5000/addDoctor', {
             method: 'POST',
@@ -82,7 +83,7 @@ export default function Admin() {
     // }
 
     return (
-        <div className="p-8 text-center">
+        <div className="pt-36 pb-16 text-center">
             <div className="mockup-phone">
                 <div className="camera"></div>
                 <div className="display">
@@ -97,6 +98,15 @@ export default function Admin() {
                                         sx={{ m: 1, width: '35ch' }}
                                         name="name"
                                         type="name"
+                                        required
+                                    />
+
+                                    <TextField
+                                        label="Field of study"
+                                        id="outlined-start-adornment"
+                                        sx={{ m: 1, width: '35ch' }}
+                                        name="speciality"
+                                        type="text"
                                         required
                                     />
 

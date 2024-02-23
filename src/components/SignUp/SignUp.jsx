@@ -3,10 +3,13 @@ import { useContext, useState } from "react";
 import { UserContext } from "../providers/AuthProviders";
 import { Divider } from '@mui/material';
 import toast from 'react-hot-toast';
+import useAxiosPublic from '../Shared/useAxiosPublic';
+import Swal from 'sweetalert2';
 
 export default function SignUp() {
 
     const { createUserWithEmail } = useContext(UserContext);
+    const axiosPublic = useAxiosPublic();
 
     const [showMessage, setMessage] = useState("");
 
@@ -15,6 +18,15 @@ export default function SignUp() {
     console.log(location);
     const from = location.state?.from?.pathname || '/';
 
+    const [file, setFile] = useState(null);
+
+    // // --->>> File Upload <<<---
+    const handleFileChange = e => {
+        const newFile = e.target.files[0];
+        setFile(newFile);
+        console.log(newFile);
+    }
+
     const handleSubmit = (event) => {
         event.preventDefault();
         const form = event.target;
@@ -22,7 +34,14 @@ export default function SignUp() {
         const email = form.email.value;
         const password = form.password.value;
         const user = { name, email, password };
-        console.log(user);
+        // console.log(user);
+
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('name', user.name);
+        formData.append('email', user.email);
+        formData.append('password', user.password);
+        console.log(formData)
 
         //create user in firebase
         createUserWithEmail(email, password)
@@ -31,10 +50,20 @@ export default function SignUp() {
                 const user = userCredential.user;
                 navigate(from, { replace: true });
                 console.log(user.uid);
-                if (user.uid) {
-                    alert('✅ Registered Successfully')
-                    location.reload();
-                }
+                axiosPublic.post('/users', formData)
+                    .then(res => {
+                        console.log(res.data)
+                        if (res.data) {
+                            Swal.fire({
+                                position: "top-center",
+                                icon: "success",
+                                title: "User created successfully",
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                            navigate('/');
+                        }
+                    })
                 // ...
             })
             .catch((error) => {
@@ -65,7 +94,7 @@ export default function SignUp() {
 
     return (
         <div className='md:bg-cover md:bg-[url("https://i.ibb.co/Y3C5Jv9/vecteezy-smiling-woman-in-white-coat-holding-documents-and-standing-27183645.jpg")] bg-cover bg-[url("https://img.freepik.com/premium-photo/doctor-s-stethoscope-blue-background_132254-2077.jpg")]'>
-            <div className="hero md:pt-28 text-center pb-40 md:pb-72">
+            <div className="hero md:pt-48 text-center pt-20 pb-40 md:pb-72">
                 <div className="hero-content flex-col lg:flex-row-reverse">
                     <div className="text-center md:text-white md:pl-20 lg:text-left">
                         <h1 className="md:text-8xl text-5xl font-bold">Welcome to Doctors Insight</h1>
@@ -82,6 +111,12 @@ export default function SignUp() {
                                     <span className="label-text md:text-black text-white font-bold">Type your name</span>
                                 </label>
                                 <input type="text" name="name" placeholder="Full name" className="bg-slate-200 p-3 rounded-lg input-primary" required />
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text text-black font-bold">Upload Profile Photo</span>
+                                </label>
+                                <input onChange={handleFileChange} type="file" className="file-input file-input-bordered file-input-secondary w-full" />
                             </div>
                             <div className="form-control">
                                 <label className="label">

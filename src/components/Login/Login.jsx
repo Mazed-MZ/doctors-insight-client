@@ -3,6 +3,7 @@ import { useContext, useState } from "react";
 import { GoogleAuthProvider } from "firebase/auth";
 import { UserContext } from "../providers/AuthProviders";
 import { Divider } from '@mui/material';
+import Swal from 'sweetalert2';
 
 const provider = new GoogleAuthProvider();
 
@@ -10,11 +11,8 @@ export default function Login() {
 
   const { signinwithpass, googleSignin } = useContext(UserContext);
 
-  const [showMessage, setMessage] = useState("");
-
   const navigate = useNavigate();
   const location = useLocation();
-  console.log(location);
   const from = location.state?.from?.pathname || '/';
 
   const handleSubmit = (event) => {
@@ -29,13 +27,24 @@ export default function Login() {
         const user = userCredential.user;
         navigate(from, { replace: true });
         if (user.uid) {
-          alert('✅ Login successfully')
-          location.reload();
+          Swal.fire({
+            position: "top-center",
+            icon: "success",
+            title: "User Loggedin successfully",
+            showConfirmButton: false,
+            timer: 1500
+          });
         }
       })
       .catch((error) => {
         const errorMessage = error.message;
-        setMessage(errorMessage)
+        if (errorMessage) {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: `${errorMessage}!`,
+          });
+        }
       });
   }
 
@@ -48,28 +57,30 @@ export default function Login() {
         console.log(user);
         navigate(from, { replace: true });
         if (user.uid) {
-          alert('✅ Login successfully')
-          location.reload();
+          Swal.fire({
+            position: "top-center",
+            icon: "success",
+            title: "User Loggedin successfully",
+            showConfirmButton: false,
+            timer: 1500
+          });
         }
         // IdP data available using getAdditionalUserInfo(result)
         // ...
       }).catch((error) => {
         // Handle Errors here.
         const errorMessage = error.message;
-        setMessage(errorMessage)
+        console.log(errorMessage)
         // ...
       });
   }
   return (
     <div className='md:bg-cover md:bg-[url("https://i.ibb.co/DKVC4RR/pexels-etatics-inc-13105351.jpg")] bg-cover bg-[url("https://www.shutterstock.com/image-vector/close-doctors-lab-white-coat-600nw-146995097.jpg")]'>
-      <div className="hero md:pt-20 text-center md:pl-20 md:pr-20 pb-40 md:pb-72">
+      <div className="hero md:pt-48 text-center md:pl-20 md:pr-20 pb-40 pt-36 md:pb-72">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="text-center md:text-white md:pl-20 lg:text-left">
             <h1 className="md:text-8xl text-5xl font-bold">Sign in</h1>
             <p className="hidden md:block py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
-            {
-              showMessage ? <div className="badge badge-error text-white md:text-3xl md:p-8 p-5 text-xl">{showMessage}</div> : <span className="hidden"></span>
-            }
           </div>
           <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-slate-500 bg-opacity-75 text-white md:text-black md:glass">
             <form className="card-body" onSubmit={handleSubmit}>

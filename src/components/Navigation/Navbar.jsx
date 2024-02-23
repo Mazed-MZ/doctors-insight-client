@@ -31,7 +31,7 @@ export default function Navbar() {
     // }
 
     return (
-        <div className="navbar bg-blue-500 md:text-white md:pr-56 md:pl-56">
+        <div className="navbar fixed z-10 bg-blue-500 md:text-white md:pr-56 md:pl-56">
             <div className="navbar-start">
 
                 {/* -------->> Mobile Device <<-------- */}
@@ -56,7 +56,9 @@ export default function Navbar() {
                             </details>
                         </li>
                         <li><a>Contact Us</a></li>
-                        <li><Link to="/login">Login</Link></li>
+                        {
+                            user ? <span className='hidden'>Hidden</span> : <li><Link to="/login">Login</Link></li>
+                        }
                     </ul>
                 </div>
                 <Link to="/"><img className='w-36 md:w-50' src="https://i.ibb.co/DfsPcGz/doctors-insight.png" alt="doctors-insight" border="0" /></Link>
@@ -64,7 +66,7 @@ export default function Navbar() {
 
             {/* ----->> Large Device <<<--- */}
             <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal px-1 md:text-xl">
+                <ul className="menu menu-horizontal md:mr-80 md:text-xl">
                     <li><Link to="/">Home</Link></li>
                     <li><Link to="/appointment">Appointment</Link></li>
                     <li>
@@ -83,28 +85,34 @@ export default function Navbar() {
                     <li><a>Contact Us</a></li>
                 </ul>
             </div>
-            <div className="navbar-end hidden md:block">
-                <Link to="/login" className="btn bg-info text-white md:text-xl">Login</Link>
-            </div>
             {
-                user ? <div className="dropdown dropdown-end ml-28">
+                user ? <span className='hidden'>Hidden</span> : <div className="navbar-center hidden md:block">
+                    <Link to="/login" className="btn bg-info text-white md:text-xl">Login</Link>
+                </div>
+            }
+
+            {
+                user ? <div className="dropdown dropdown-end ml-20 md:ml-0">
                     <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar online">
-                        <div className="w-14 rounded-full">
+                        <div className="md:w-14 rounded-full">
                             {
                                 user ? <img alt="Profile Photo" src={user.photoURL} /> : <span className='hidden'></span>
                             }
                         </div>
                     </div>
                     <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 md:text-black">
-                        <li>
-                            <Link to="/profile" className="justify-between">
-                                Profile
-                            </Link>
-                        </li>
+                        <li><Link to="/profile" className="justify-between">Profile</Link></li>
                         <li><Link to="myappointment">My Appointment</Link></li>
-                        <li><Link to="/admin">Admin Panal</Link></li>
-                        <li><Link to="myappointment">Prescription</Link></li>
-                        <li><Link to="myappointment">Settings</Link></li>
+                        <li><Link to="">My Reviews</Link></li>
+                        <li><Link to="">My History</Link></li>
+                        <li><Link to="/">Home</Link></li>
+
+                        <li><Link to="">Admin Dashboard</Link></li>
+                        <li><Link to="users">All User</Link></li>
+                        <li><Link to="addDoctor">Add a doctor</Link></li>
+                        <li><Link to="manage-doctor">Manage Doctors</Link></li>
+                        <li><Link to="manage-services">Manage Services</Link></li>
+
                         <li><a onClick={handlelogout}>Logout</a></li>
                     </ul>
                 </div> : <span className='hidden'></span>

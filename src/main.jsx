@@ -5,6 +5,10 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import {
+  QueryClient,
+  QueryClientProvider
+} from '@tanstack/react-query';
 import './index.css';
 import Home from './components/Home/Home.jsx';
 import Appointment from './components/Appointment/Appointment.jsx';
@@ -12,11 +16,17 @@ import Login from './components/Login/Login.jsx';
 import SignUp from './components/SignUp/SignUp.jsx';
 import AuthProvider from './components/providers/AuthProviders.jsx';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute.jsx';
-import Profile from './components/ProfileManagement/Profile.jsx';
-import MyAppointment from './components/ProfileManagement/MyAppointment/MyAppointment.jsx';
-import Admin from './components/ProfileManagement/AdminPanal/Admin.jsx';
-import AvailableDoctors from './components/Home/Doctors/AvailableDoctors.jsx';
+import Profile from './components/UserManagement/Profile.jsx';
+import AddDoctor from './components/UserManagement/AddDoctor/AddDoctor.jsx';
+import MyAppointment from './components/UserManagement/MyAppointment/MyAppointment.jsx';
+import { HelmetProvider } from 'react-helmet-async';
+import ManageServices from './components/UserManagement/ManageServices/ManageServices.jsx';
+import UpdateService from './components/UserManagement/UpdateService/UpdateService.jsx';
+import ManageDoctor from './components/UserManagement/ManageDoctor/ManageDoctor.jsx';
+import UpdateDoctor from './components/UserManagement/UpdateDoctor/UpdateDoctor.jsx';
+import AllUser from './components/UserManagement/AllUser/AllUser.jsx';
 
+const queryClient = new QueryClient()
 
 const router = createBrowserRouter([
   {
@@ -48,8 +58,30 @@ const router = createBrowserRouter([
         element: <MyAppointment></MyAppointment>
       },
       {
-        path: "admin",
-        element: <Admin></Admin>
+        path: "addDoctor",
+        element: <AddDoctor></AddDoctor>
+      },
+      {
+        path: "manage-doctor",
+        element: <ManageDoctor></ManageDoctor>
+      },
+      {
+        path: "manage-services",
+        element: <ManageServices></ManageServices>
+      },
+      {
+        path: "/updateService/:id",
+        element: <UpdateService></UpdateService>,
+        loader: ({params}) => fetch(`http://localhost:5000/services/${params.id}`)
+      },
+      {
+        path: "/updateDoctor/:id",
+        element: <UpdateDoctor></UpdateDoctor>,
+        loader: ({params}) => fetch(`http://localhost:5000/docInfo/${params.id}`)
+      },
+      {
+        path: "users",
+        element: <AllUser></AllUser>
       }
     ]
   },
@@ -58,7 +90,11 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <AuthProvider>
-      <RouterProvider router={router} />
+      <QueryClientProvider client={queryClient}>
+        <HelmetProvider>
+          <RouterProvider router={router} />
+        </HelmetProvider>
+      </QueryClientProvider>
     </AuthProvider>
-  </React.StrictMode>,
+  </React.StrictMode >,
 )
