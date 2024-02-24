@@ -1,10 +1,12 @@
 import { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { UserContext } from '../providers/AuthProviders'
+import useAdmin from '../Shared/useAdmin';
 
 export default function Navbar() {
 
     const { user, logout } = useContext(UserContext);
+    const [isAdmin] = useAdmin();
 
     const handlelogout = () => {
         logout()
@@ -101,17 +103,23 @@ export default function Navbar() {
                         </div>
                     </div>
                     <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 md:text-black">
-                        <li><Link to="/profile" className="justify-between">Profile</Link></li>
-                        <li><Link to="myappointment">My Appointment</Link></li>
-                        <li><Link to="">My Reviews</Link></li>
-                        <li><Link to="">My History</Link></li>
-                        <li><Link to="/">Home</Link></li>
-
-                        <li><Link to="">Admin Dashboard</Link></li>
-                        <li><Link to="users">All User</Link></li>
-                        <li><Link to="addDoctor">Add a doctor</Link></li>
-                        <li><Link to="manage-doctor">Manage Doctors</Link></li>
-                        <li><Link to="manage-services">Manage Services</Link></li>
+                        {
+                            isAdmin ?
+                                <div>
+                                    <li><Link to="">Admin Dashboard</Link></li>
+                                    <li><Link to="users">All User</Link></li>
+                                    <li><Link to="addDoctor">Add a doctor</Link></li>
+                                    <li><Link to="manage-doctor">Manage Doctors</Link></li>
+                                    <li><Link to="manage-services">Manage Services</Link></li>
+                                </div> :
+                                <div>
+                                    <li><Link to="/profile" className="justify-between">Profile</Link></li>
+                                    <li><Link to="myappointment">My Appointment</Link></li>
+                                    <li><Link to="">My Reviews</Link></li>
+                                    <li><Link to="">My History</Link></li>
+                                    <li><Link to="/">Home</Link></li>
+                                </div>
+                        }
 
                         <li><a onClick={handlelogout}>Logout</a></li>
                     </ul>

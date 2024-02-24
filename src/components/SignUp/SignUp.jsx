@@ -5,10 +5,13 @@ import { Divider } from '@mui/material';
 import toast from 'react-hot-toast';
 import useAxiosPublic from '../Shared/useAxiosPublic';
 import Swal from 'sweetalert2';
+import { GoogleAuthProvider } from 'firebase/auth';
+
+const provider = new GoogleAuthProvider();
 
 export default function SignUp() {
 
-    const { createUserWithEmail } = useContext(UserContext);
+    const { createUserWithEmail, googleSignin } = useContext(UserContext);
     const axiosPublic = useAxiosPublic();
 
     const [showMessage, setMessage] = useState("");
@@ -52,7 +55,7 @@ export default function SignUp() {
                 console.log(user.uid);
                 axiosPublic.post('/users', formData)
                     .then(res => {
-                        console.log(res.data)
+                        // console.log(res.data)
                         if (res.data) {
                             Swal.fire({
                                 position: "top-center",
@@ -92,9 +95,38 @@ export default function SignUp() {
         }
     }
 
+    const handleGoogleSignin = () => {
+        googleSignin(provider)
+            .then((result) => {
+                // The signed-in user info.
+                const user = result.user;
+                console.log(user);
+                navigate(from, { replace: true });
+                axiosPublic.post('/googleuser', user)
+                    .then(res => {
+                        if (res.data) {
+                            Swal.fire({
+                                position: "top-center",
+                                icon: "success",
+                                title: "User created successfully",
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                        }
+                    })
+                // IdP data available using getAdditionalUserInfo(result)
+                // ...
+            }).catch((error) => {
+                // Handle Errors here.
+                const errorMessage = error.message;
+                console.log(errorMessage)
+                // ...
+            });
+    }
+
     return (
         <div className='md:bg-cover md:bg-[url("https://i.ibb.co/Y3C5Jv9/vecteezy-smiling-woman-in-white-coat-holding-documents-and-standing-27183645.jpg")] bg-cover bg-[url("https://img.freepik.com/premium-photo/doctor-s-stethoscope-blue-background_132254-2077.jpg")]'>
-            <div className="hero md:pt-48 text-center pt-20 pb-40 md:pb-72">
+            <div className="hero md:pt-32 text-center pt-20 pb-40 md:pb-72">
                 <div className="hero-content flex-col lg:flex-row-reverse">
                     <div className="text-center md:text-white md:pl-20 lg:text-left">
                         <h1 className="md:text-8xl text-5xl font-bold">Welcome to Doctors Insight</h1>
@@ -138,7 +170,7 @@ export default function SignUp() {
                             </label>
                             <div className="form-control grid grid-cols-2 gap-3">
                                 <button className="btn btn-secondary md:text-black text-white" type="submit">SIGN UP</button>
-                                <button className="btn btn-secondary md:text-black text-white">CONTINUE WITH GOOGLE</button>
+                                <button onClick={handleGoogleSignin} className="btn btn-secondary md:text-black text-white">CONTINUE WITH GOOGLE</button>
                             </div>
                         </form>
                     </div>

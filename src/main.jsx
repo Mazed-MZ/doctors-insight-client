@@ -25,6 +25,7 @@ import UpdateService from './components/UserManagement/UpdateService/UpdateServi
 import ManageDoctor from './components/UserManagement/ManageDoctor/ManageDoctor.jsx';
 import UpdateDoctor from './components/UserManagement/UpdateDoctor/UpdateDoctor.jsx';
 import AllUser from './components/UserManagement/AllUser/AllUser.jsx';
+import AdminRoute from './components/PrivateRoute/AdminRoute.jsx';
 
 const queryClient = new QueryClient()
 
@@ -81,7 +82,7 @@ const router = createBrowserRouter([
       },
       {
         path: "users",
-        element: <AllUser></AllUser>
+        element: <AdminRoute><AllUser></AllUser></AdminRoute>
       }
     ]
   },

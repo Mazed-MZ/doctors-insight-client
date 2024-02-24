@@ -23,15 +23,11 @@ const allUser = () => {
 
         //====>>>> With AxiosSecure <<<<====
         queryFn: async () => {
-            const res = await axiosSecure.get(`/user`, {
-                headers: {
-                    authorization: `Bearer ${localStorage.getItem('access-token')}`
-                }
-            })
+            const res = await axiosSecure.get(`/user`)
             // console.log('res from axios', res)
             return res.data;
         },
     })
-    return[users, refetch]
+    return [users, refetch]
 }
 export default allUser;
