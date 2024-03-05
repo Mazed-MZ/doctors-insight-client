@@ -26,6 +26,7 @@ import ManageDoctor from './components/UserManagement/ManageDoctor/ManageDoctor.
 import UpdateDoctor from './components/UserManagement/UpdateDoctor/UpdateDoctor.jsx';
 import AllUser from './components/UserManagement/AllUser/AllUser.jsx';
 import AdminRoute from './components/PrivateRoute/AdminRoute.jsx';
+import Payment from './components/UserManagement/Payment/Payment.jsx';
 
 const queryClient = new QueryClient()
 
@@ -83,6 +84,11 @@ const router = createBrowserRouter([
       {
         path: "users",
         element: <AdminRoute><AllUser></AllUser></AdminRoute>
+      },
+      {
+        path: "/payment/:id",
+        element: <Payment></Payment>,
+        loader: ({params}) => fetch(`http://localhost:5000/appointment-payment/${params.id}`)
       }
     ]
   },

@@ -11,10 +11,10 @@ import allUser from '../../Shared/allUser';
 export default function AllUser() {
 
     const [users, refetch] = allUser();
-    console.log(users);
+    // console.log(users);
 
     const handleMakeAdmin = (userData) => {
-        console.log(userData);
+        // console.log(userData);
         fetch(`http://localhost:5000/user/admin/${userData._id}`, {
             method: 'PATCH'
         })
@@ -35,7 +35,7 @@ export default function AllUser() {
 
 
     const handleMakeUser = (userData) => {
-        console.log(userData);
+        // console.log(userData);
         fetch(`http://localhost:5000/user/make-user/${userData._id}`, {
             method: 'PATCH'
         })

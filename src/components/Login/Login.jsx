@@ -54,7 +54,7 @@ export default function Login() {
       .then((result) => {
         // The signed-in user info.
         const user = result.user;
-        console.log(user);
+        // console.log(user);
         navigate(from, { replace: true });
         if (user.uid) {
           Swal.fire({
@@ -70,7 +70,7 @@ export default function Login() {
       }).catch((error) => {
         // Handle Errors here.
         const errorMessage = error.message;
-        console.log(errorMessage)
+        // console.log(errorMessage)
         // ...
       });
   }

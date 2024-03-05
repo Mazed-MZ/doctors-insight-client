@@ -7,7 +7,7 @@ import Swal from 'sweetalert2';
 export default function UpdateDoctor() {
 
     const updateDoc = useLoaderData();
-    console.log(updateDoc);
+    // console.log(updateDoc);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -17,7 +17,7 @@ export default function UpdateDoctor() {
         const speciality = form.speciality.value;
         const email = form.email.value;
         const newItemData = { name, image, speciality, email };
-        console.log(newItemData);
+        // console.log(newItemData);
 
         Swal.fire({
             title: `Are you confirm to update ${updateDoc.name} information?`,
@@ -38,7 +38,7 @@ export default function UpdateDoctor() {
                 })
                     .then(res => res.json())
                     .then(data => {
-                        console.log(data)
+                        // console.log(data)
                         if (data.modifiedCount > 0) {
                             Swal.fire({
                                 title: `${updateDoc.name} is updated`,

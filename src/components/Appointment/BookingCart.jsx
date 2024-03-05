@@ -22,7 +22,7 @@ const style = {
 
 export default function BookingCart({ booking, date }) {
 
-    const { name, id, slots, space, _id } = booking;
+    const { name, id, slots, space, _id, price } = booking;
 
     const selectedDate = date.toDateString();
     const [allAppointments, setAllAppointments] = useState([]);
@@ -36,10 +36,10 @@ export default function BookingCart({ booking, date }) {
     }, [])
 
     // ----->>>> Space Update <<<----
-    
+
     // const handleJoblistCart = (id) => {
-        // const newCart = [...cart, product];
-        //-->> Handle quantity from storage to cart <<--
+    // const newCart = [...cart, product];
+    //-->> Handle quantity from storage to cart <<--
     //     let newCart = [];
     //     const exists = allAppointments.find(pd => pd.id === id);
     //     // console.log(exists)
@@ -85,7 +85,7 @@ export default function BookingCart({ booking, date }) {
         const patient = form.patient.value;
         const phone = form.phone.value;
         const email = form.email.value;
-        const appointmentData = { id, name, space, date, time, patient, phone, email };
+        const appointmentData = { id, name, space, date, time, patient, price, phone, email };
         // setSpace(appointmentData);
         fetch('http://localhost:5000/appointment', {
             method: 'POST',
@@ -137,6 +137,12 @@ export default function BookingCart({ booking, date }) {
                             <div className="mt-3 mb-1 text-center">
                                 <Chip label={selectedDate} color="primary" />
                             </div>
+                            <div className="mt-3 mb-1 text-center font-bold">
+                                <div className="badge badge-secondary gap-2 p-5 text-lg text-white">
+                                    <p className='font-bold'>Visiting Price ${price}</p>
+                                </div>
+
+                            </div>
                             <select name="slot"
                                 required className="select select-info w-full h-14 mt-4 md:max-w-xs mb-5">
                                 <option disabled selected>Select Your Appointment Time</option>
@@ -186,7 +192,7 @@ export default function BookingCart({ booking, date }) {
                                 sx={{ m: 1, width: '35ch' }}
                                 variant="standard"
                             />
-                            <input type="submit" className="btn btn-success mt-5 ml-3" placeholder='Apply'/>
+                            <input type="submit" className="btn btn-success mt-5 ml-3" placeholder='Apply' />
                         </form>
                     </Box>
                 </Fade>

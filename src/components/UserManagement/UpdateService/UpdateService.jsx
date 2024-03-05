@@ -7,7 +7,7 @@ import Swal from 'sweetalert2';
 export default function UpdateService() {
 
     const update = useLoaderData();
-    console.log(update);
+    // console.log(update);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -16,7 +16,7 @@ export default function UpdateService() {
         const space = form.space.value;
         const price = form.price.value;
         const newItemData = { name, space, price };
-        console.log(newItemData);
+        // console.log(newItemData);
 
         Swal.fire({
             title: `Are you confirm to update this ${update.name}?`,
@@ -37,7 +37,7 @@ export default function UpdateService() {
                 })
                     .then(res => res.json())
                     .then(data => {
-                        console.log(data)
+                        // console.log(data)
                         if (data.modifiedCount > 0) {
                             Swal.fire({
                                 title: `${update.name} is updated`,

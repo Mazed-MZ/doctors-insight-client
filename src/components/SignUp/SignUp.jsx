@@ -27,7 +27,7 @@ export default function SignUp() {
     const handleFileChange = e => {
         const newFile = e.target.files[0];
         setFile(newFile);
-        console.log(newFile);
+        // console.log(newFile);
     }
 
     const handleSubmit = (event) => {
@@ -44,7 +44,7 @@ export default function SignUp() {
         formData.append('name', user.name);
         formData.append('email', user.email);
         formData.append('password', user.password);
-        console.log(formData)
+        // console.log(formData)
 
         //create user in firebase
         createUserWithEmail(email, password)
@@ -52,7 +52,7 @@ export default function SignUp() {
                 // Signed up 
                 const user = userCredential.user;
                 navigate(from, { replace: true });
-                console.log(user.uid);
+                // console.log(user.uid);
                 axiosPublic.post('/users', formData)
                     .then(res => {
                         // console.log(res.data)
@@ -88,7 +88,7 @@ export default function SignUp() {
             isFormValid = isIdValid && IdUseNumber;
         }
         if (isFormValid) {
-            console.log('form is valied')
+            // console.log('form is valied')
         }
         else {
             alert('❗❗❗Sorry! your given information is invalid');
@@ -100,7 +100,7 @@ export default function SignUp() {
             .then((result) => {
                 // The signed-in user info.
                 const user = result.user;
-                console.log(user);
+                // console.log(user);
                 navigate(from, { replace: true });
                 axiosPublic.post('/googleuser', user)
                     .then(res => {
@@ -119,7 +119,7 @@ export default function SignUp() {
             }).catch((error) => {
                 // Handle Errors here.
                 const errorMessage = error.message;
-                console.log(errorMessage)
+                // console.log(errorMessage)
                 // ...
             });
     }

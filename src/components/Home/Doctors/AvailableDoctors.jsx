@@ -15,7 +15,7 @@ export default function AvailableDoctors() {
             .then(res => res.json())
             .then(data => setDoctors(data))
     }, [])
-    console.log(doctors);
+    // console.log(doctors);
     return (
         <div className='md:pb-12 md:pt-28 pt-12'>
             <h1 className='text-4xl text-center border-cyan-500 border-y border-x-8 md:text-5xl md:pr-30 md:pb-5 m-8 p-8'>Board Of Directors</h1>

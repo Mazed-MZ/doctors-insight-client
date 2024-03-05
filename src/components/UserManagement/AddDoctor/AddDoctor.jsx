@@ -41,7 +41,7 @@ export default function Admin() {
         const email = form.email.value;
         const image = form.image.value;
         const doctorsFiles = { name, speciality, email, image }
-        console.log(doctorsFiles);
+        // console.log(doctorsFiles);
         fetch('http://localhost:5000/addDoctor', {
             method: 'POST',
             headers: {
@@ -51,7 +51,7 @@ export default function Admin() {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
+                // console.log(data)
                 if (data.insertedId) {
                     alert('Doctor added successfully');
                     location.reload();

@@ -2,11 +2,17 @@ import { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { UserContext } from '../providers/AuthProviders'
 import useAdmin from '../Shared/useAdmin';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHospitalUser } from '@fortawesome/free-solid-svg-icons';
+import { Chip } from '@mui/material';
+import useAppointments from '../Shared/useAppointments';
 
 export default function Navbar() {
 
     const { user, logout } = useContext(UserContext);
     const [isAdmin] = useAdmin();
+    const [appointments] = useAppointments();
+    // console.log(appointments.length);
 
     const handlelogout = () => {
         logout()
@@ -68,7 +74,7 @@ export default function Navbar() {
 
             {/* ----->> Large Device <<<--- */}
             <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal md:mr-80 md:text-xl">
+                <ul className="menu menu-horizontal md:mr-40 md:text-xl">
                     <li><Link to="/">Home</Link></li>
                     <li><Link to="/appointment">Appointment</Link></li>
                     <li>
@@ -92,6 +98,25 @@ export default function Navbar() {
                     <Link to="/login" className="btn bg-info text-white md:text-xl">Login</Link>
                 </div>
             }
+
+            <div className="dropdown dropdown-end">
+                {
+                    user && !isAdmin ? <div tabIndex={0} role="button" className="btn btn-ghost md:ml-0 md:pt-3 md:mr-32 hidden md:block btn-circle">
+                        <div className="indicator">
+                            <FontAwesomeIcon icon={faHospitalUser} size="2xl" style={{ color: "#fafafa", }} />
+                            <span className="badge badge-sm indicator-item">+{appointments?.length || 0}</span>
+                        </div>
+                    </div> : <span className="md:hidden"></span>
+                }
+                <div tabIndex={0} className="mt-3 z-[1] card card-compact dropdown-content w-72 shadow bg-accent text-black">
+                    <div className="card-body text-left">
+                        <span className="font-bold text-lg text-white">+{appointments?.length || 0} Appointments applied</span>
+                        <div className="card-actions">
+                            <Link to="/myappointment"><button className="btn text-center btn-black btn-block">View appointments</button></Link>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             {
                 user ? <div className="dropdown dropdown-end ml-20 md:ml-0">
