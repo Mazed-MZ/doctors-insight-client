@@ -141,7 +141,7 @@ export default function Navbar() {
                                     <li><Link to="/profile" className="justify-between">Profile</Link></li>
                                     <li><Link to="myappointment">My Appointment</Link></li>
                                     <li><Link to="">My Reviews</Link></li>
-                                    <li><Link to="">My History</Link></li>
+                                    <li><Link to="payment-history">Payment History</Link></li>
                                     <li><Link to="/">Home</Link></li>
                                 </div>
                         }

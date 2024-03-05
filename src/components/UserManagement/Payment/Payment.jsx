@@ -1,106 +1,100 @@
-import { Helmet } from 'react-helmet-async';
-import { useEffect } from 'react';
+import { Helmet } from "react-helmet-async";
+import { useEffect } from "react";
 import Aos from "aos";
-import 'aos/dist/aos.css';
-import Card from '@mui/joy/Card';
-import CardActions from '@mui/joy/CardActions';
-import CardContent from '@mui/joy/CardContent';
-import Divider from '@mui/joy/Divider';
-import Typography from '@mui/joy/Typography';
-import Button from '@mui/joy/Button';
-import Chip from '@mui/joy/Chip';
-import List from '@mui/joy/List';
-import ListItem from '@mui/joy/ListItem';
-import ListItemDecorator from '@mui/joy/ListItemDecorator';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck } from '@fortawesome/free-solid-svg-icons';
-import FormControl from '@mui/joy/FormControl';
-import { faCreditCard } from '@fortawesome/free-regular-svg-icons';
-import { useLoaderData } from 'react-router-dom';
-import { TextField } from '@mui/material';
-import MenuItem from '@mui/material/MenuItem';
-import { Box } from '@mui/joy';
-import Swal from 'sweetalert2';
-
-// const stripePromise = loadStripe('pk_test_51Ofzj6HltYrJSEDhsB0l1hbhLGjmV6OiSz68aHIFRpRXd0RRELkx293WgtWpvJUHh3BJcCtQak2wRUxrD6BPTb5d00A3PPZdkr');
+import "aos/dist/aos.css";
+import { useLoaderData } from "react-router-dom";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+import CheckOutForm from "./CheckOutForm";
 
 export default function Payment() {
+  const appointments = useLoaderData();
+  console.log(appointments);
 
+  const stripePromise = loadStripe(
+    "pk_test_51Ofzj6HltYrJSEDhsB0l1hbhLGjmV6OiSz68aHIFRpRXd0RRELkx293WgtWpvJUHh3BJcCtQak2wRUxrD6BPTb5d00A3PPZdkr"
+  );
 
-    const appointments = useLoaderData();
-    console.log(appointments);
+  //   const currencies = [
+  //     {
+  //       value: "USD",
+  //       label: "$ USD",
+  //     },
+  //     {
+  //       value: "EUR",
+  //       label: "€ EURO",
+  //     },
+  //     {
+  //       value: "BTC",
+  //       label: "฿ BITCOIN",
+  //     },
+  //     {
+  //       value: "JPY",
+  //       label: "¥ YEN",
+  //     },
+  //     {
+  //       value: "BDT",
+  //       label: "৳ TAKA",
+  //     },
+  //     {
+  //       value: "INR",
+  //       label: "₹ RUPEE",
+  //     },
+  //   ];
 
-    const currencies = [
-        {
-            value: 'USD',
-            label: '$ USD',
-        },
-        {
-            value: 'EUR',
-            label: '€ EURO',
-        },
-        {
-            value: 'BTC',
-            label: '฿ BITCOIN',
-        },
-        {
-            value: 'JPY',
-            label: '¥ YEN',
-        },
-        {
-            value: 'BDT',
-            label: '৳ TAKA',
-        },
-        {
-            value: 'INR',
-            label: '₹ RUPEE',
-        },
-    ];
+  //   const handleSubmit = (event) => {
+  //     // console.log('clicked')
+  //     event.preventDefault();
+  //     const form = event.target;
+  //     const patient = form.patient.value;
+  //     const currency = form.currency.value;
+  //     const phone = form.phone.value;
+  //     const patientId = form._id.value;
+  //     const name = form.name.value;
 
-    const handleSubmit = (event) => {
-        // console.log('clicked')
-        event.preventDefault();
-        const form = event.target;
-        const patient = form.patient.value;
-        const currency = form.currency.value;
-        const phone = form.phone.value;
-        const patientId = form._id.value;
-        const name = form.name.value;
+  //     const paymentInfo = { patient, currency, phone, patientId, name };
+  //     console.log(paymentInfo);
 
-        const paymentInfo = { patient, currency, phone, patientId, name }
-        console.log(paymentInfo);
+  //     fetch("http://localhost:5000/proceed-payment", {
+  //       method: "POST",
+  //       headers: {
+  //         "content-type": "application/json",
+  //       },
+  //       body: JSON.stringify(paymentInfo),
+  //     })
+  //       .then((res) => res.json())
+  //       .then((result) => {
+  //         // window.location.replace(result.url);
+  //         console.log(result);
+  //       });
+  //   };
 
-        fetch('http://localhost:5000/proceed-payment', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(paymentInfo)
-        })
-            .then(res => res.json())
-            .then(result => {
-                // window.location.replace(result.url);
-                console.log(result)
-            });
-    }
+  useEffect(() => {
+    Aos.init({ duration: 2000 });
+  }, []);
 
-    useEffect(() => {
-        Aos.init({ duration: 2000 });
-    }, []);
+  return (
+    <div className="md:pt-28 pt-12">
+      <Helmet>
+        <title>Doctors Insight | Payment</title>
+      </Helmet>
+      <div>
+        <div className="pt-18">
+          <div>
+            <h1 className="text-4xl text-center border-cyan-500 border-y border-x-8 md:text-5xl md:pr-30 md:pb-5 m-8 p-8">
+              Make Payment
+            </h1>
+          </div>
+        </div>
+      </div>
 
-    return (
-        <div className="md:pt-28 pt-12">
-            <Helmet>
-                <title>Doctors Insight | Payment</title>
-            </Helmet>
-            <div>
-                <div className="pt-18">
-                    <div>
-                        <h1 className='text-4xl text-center border-cyan-500 border-y border-x-8 md:text-5xl md:pr-30 md:pb-5 m-8 p-8'>Make Payment</h1>
-                    </div>
-                </div>
-            </div>
-            <div className='md:grid md:grid-cols-2 md:gap-12 md:m-12'>
+      <div className="bg-white m-12">
+        <Elements stripe={stripePromise}>
+          <CheckOutForm></CheckOutForm>
+        </Elements>
+      </div>
+
+      {/* <div className='md:grid md:grid-cols-2 md:gap-12 md:m-12'>
                 <div>
                     <Card size="lg" variant="outlined" className="shadow-xl">
                         <Typography level="h2">{appointments.name}</Typography>
@@ -206,7 +200,7 @@ export default function Payment() {
                         </CardContent>
                     </Card>
                 </div>
-            </div>
-        </div>
-    )
+            </div> */}
+    </div>
+  );
 }

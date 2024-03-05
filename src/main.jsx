@@ -27,6 +27,7 @@ import UpdateDoctor from './components/UserManagement/UpdateDoctor/UpdateDoctor.
 import AllUser from './components/UserManagement/AllUser/AllUser.jsx';
 import AdminRoute from './components/PrivateRoute/AdminRoute.jsx';
 import Payment from './components/UserManagement/Payment/Payment.jsx';
+import PaymentHistory from './components/UserManagement/PaymentHistory/PaymentHistory.jsx';
 
 const queryClient = new QueryClient()
 
@@ -89,6 +90,10 @@ const router = createBrowserRouter([
         path: "/payment/:id",
         element: <Payment></Payment>,
         loader: ({params}) => fetch(`http://localhost:5000/appointment-payment/${params.id}`)
+      },
+      {
+        path: "payment-history",
+        element: <PaymentHistory></PaymentHistory>
       }
     ]
   },
