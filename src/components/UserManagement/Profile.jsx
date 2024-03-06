@@ -15,16 +15,23 @@ import { Link } from "react-router-dom";
 export default function Profile() {
   const { user } = useAuth();
   const [axiosSecure] = useAxiosSecure();
+  const [appointments] = useAppointments();
 
   const { data: payments = [] } = useQuery({
-    queryKey: ["payments", user.email],
+    queryKey: ["payments", user?.email],
     queryFn: async () => {
       const res = await axiosSecure.get(`/payments/${user.email}`);
       return res.data;
     },
   });
-  const [appointments] = useAppointments();
   //console.log(payments.length)
+
+  const { refetch, data: reviews = [] } = useQuery({
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/addreview/${user?.email}`);
+      return res.data;
+    },
+  });
 
   return (
     <div className="pt-12">
@@ -74,6 +81,9 @@ export default function Profile() {
           >
             {user?.displayName}
           </Typography>
+          <p className="text-xm font-semibold italic text-gray-500">
+            {user?.email}
+          </p>
           <CardContent sx={{ maxWidth: "40ch" }}>
             <Box
               sx={{
@@ -126,7 +136,7 @@ export default function Profile() {
                     <Typography level="body-xs" fontWeight="lg">
                       Your overall Rating
                     </Typography>
-                    <Typography fontWeight="lg">8.9</Typography>
+                    <Typography fontWeight="lg">{reviews ? reviews.rating : 0}</Typography>
                   </div>
                 </Sheet>
                 <Box
@@ -146,16 +156,18 @@ export default function Profile() {
             orientation="vertical"
             buttonFlex={1}
             sx={{
-              "--Button-radius": "40px",
-              width: "clamp(min(100%, 160px), 50%, min(100%, 200px))",
+              "--Button-radius": "10px",
+              width: "clamp(min(100%, 400px), 50%, min(100%, 500px))",
             }}
           >
-            <Button variant="solid" color="warning">
-              Share
-            </Button>
-            <Button variant="plain" color="neutral">
-              Skip
-            </Button>
+            <div className="grid grid-cols-2 gap-2">
+              <Button variant="solid" color="primary">
+                <Link to="/feedback">Give your Feedback</Link>
+              </Button>
+              <Button variant="solid" color="primary">
+                Surgeons Consultency
+              </Button>
+            </div>
           </CardActions>
         </Card>
       </div>

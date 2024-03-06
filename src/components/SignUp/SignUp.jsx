@@ -19,7 +19,7 @@ export default function SignUp() {
     const navigate = useNavigate();
     const location = useLocation();
     console.log(location);
-    const from = location.state?.from?.pathname || '/';
+    const from = location.state?.from?.pathname || '/appointment';
 
     const [file, setFile] = useState(null);
 

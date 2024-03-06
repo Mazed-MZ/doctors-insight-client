@@ -48,7 +48,7 @@ export default function Navbar() {
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                     </div>
                     <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                        <li><Link to="/">Home</Link></li>
+                        <li><a href="/">Home</a></li>
                         <li><Link to="/appointment">Appointment</Link></li>
                         <li>
                             <details>
@@ -69,13 +69,13 @@ export default function Navbar() {
                         }
                     </ul>
                 </div>
-                <Link to="/"><img className='w-36 md:w-50' src="https://i.ibb.co/DfsPcGz/doctors-insight.png" alt="doctors-insight" border="0" /></Link>
+                <a href="/"><img className='w-36 md:w-50' src="https://i.ibb.co/DfsPcGz/doctors-insight.png" alt="doctors-insight" border="0" /></a>
             </div>
 
             {/* ----->> Large Device <<<--- */}
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal md:mr-40 md:text-xl">
-                    <li><Link to="/">Home</Link></li>
+                    <li><a href="/">Home</a></li>
                     <li><Link to="/appointment">Appointment</Link></li>
                     <li>
                         <details>
@@ -140,7 +140,7 @@ export default function Navbar() {
                                 <div>
                                     <li><Link to="/profile" className="justify-between">Profile</Link></li>
                                     <li><Link to="myappointment">My Appointment</Link></li>
-                                    <li><Link to="">My Reviews</Link></li>
+                                    <li><Link to="feedback">My Reviews</Link></li>
                                     <li><Link to="payment-history">Payment History</Link></li>
                                     <li><Link to="/">Home</Link></li>
                                 </div>
