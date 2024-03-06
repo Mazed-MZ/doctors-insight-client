@@ -29,7 +29,7 @@ export default function UpdateDoctor() {
             confirmButtonText: "Yes, Upgrade it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/docInfo/${updateDoc._id}`, {
+                fetch(`https://doctors-insight-server.onrender.com/docInfo/${updateDoc._id}`, {
                     method: 'PUT',
                     headers: {
                         'content-type': 'application/json'

@@ -30,7 +30,7 @@ export default function BookingCart({ booking, date }) {
     const [updateSpace, setUpdateSpace] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/booking')
+        fetch('https://doctors-insight-server.onrender.com/booking')
             .then(res => res.json())
             .then(data => setAllAppointments(data))
     }, [])
@@ -55,7 +55,7 @@ export default function BookingCart({ booking, date }) {
     //     setSpace(newCart);
     //     console.log(spaces);
 
-    //     fetch(`http://localhost:5000/appointment/${booking.id}`, {
+    //     fetch(`https://doctors-insight-server.onrender.com/appointment/${booking.id}`, {
     //         method: 'PUT',
     //         headers: {
     //             'content-type': 'application/json'
@@ -87,7 +87,7 @@ export default function BookingCart({ booking, date }) {
         const email = form.email.value;
         const appointmentData = { id, name, space, date, time, patient, price, phone, email };
         // setSpace(appointmentData);
-        fetch('http://localhost:5000/appointment', {
+        fetch('https://doctors-insight-server.onrender.com/appointment', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

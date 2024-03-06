@@ -11,7 +11,7 @@ export default function AvailableDoctors() {
 
     const [doctors, setDoctors] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/addDoctor')
+        fetch('https://doctors-insight-server.onrender.com/addDoctor')
             .then(res => res.json())
             .then(data => setDoctors(data))
     }, [])

@@ -8,7 +8,7 @@ export default function BookAppointment({ date }) {
     // const [selectedAppointment, setSelectedAppointment] = useState([])
 
     useEffect(() => {
-        fetch('http://localhost:5000/booking')
+        fetch('https://doctors-insight-server.onrender.com/booking')
             .then(res => res.json())
             .then(data => setBookingData(data))
     }, []);

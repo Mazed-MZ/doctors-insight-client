@@ -55,7 +55,7 @@ export default function Payment() {
   //     const paymentInfo = { patient, currency, phone, patientId, name };
   //     console.log(paymentInfo);
 
-  //     fetch("http://localhost:5000/proceed-payment", {
+  //     fetch("https://doctors-insight-server.onrender.com/proceed-payment", {
   //       method: "POST",
   //       headers: {
   //         "content-type": "application/json",

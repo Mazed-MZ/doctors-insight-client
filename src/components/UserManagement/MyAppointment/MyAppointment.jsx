@@ -21,7 +21,7 @@ export default function MyAppointment() {
         setselectedDate(date);
         // console.log(date);
 
-        fetch('http://localhost:5000/appointmentbydate', {
+        fetch('https://doctors-insight-server.onrender.com/appointmentbydate', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -34,7 +34,7 @@ export default function MyAppointment() {
     // console.log(appointments);
 
     // useEffect(() => {
-    //     fetch('http://localhost:5000/appointmentsbydate', {
+    //     fetch('https://doctors-insight-server.onrender.com/appointmentsbydate', {
     //         method: 'POST',
     //         headers: {
     //             'content-type': 'application/json'
@@ -56,7 +56,7 @@ export default function MyAppointment() {
             confirmButtonText: "Yes, cancel appointment!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/appointments/${appointmentList._id}`, {
+                fetch(`https://doctors-insight-server.onrender.com/appointments/${appointmentList._id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())

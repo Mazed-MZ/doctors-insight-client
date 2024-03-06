@@ -15,7 +15,7 @@ export default function AllUser() {
 
     const handleMakeAdmin = (userData) => {
         // console.log(userData);
-        fetch(`http://localhost:5000/user/admin/${userData._id}`, {
+        fetch(`https://doctors-insight-server.onrender.com/user/admin/${userData._id}`, {
             method: 'PATCH'
         })
             .then(res => res.json())
@@ -36,7 +36,7 @@ export default function AllUser() {
 
     const handleMakeUser = (userData) => {
         // console.log(userData);
-        fetch(`http://localhost:5000/user/make-user/${userData._id}`, {
+        fetch(`https://doctors-insight-server.onrender.com/user/make-user/${userData._id}`, {
             method: 'PATCH'
         })
             .then(res => res.json())
@@ -66,7 +66,7 @@ export default function AllUser() {
             confirmButtonText: "Yes, remove it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/user/${userData.email}`, {
+                fetch(`https://doctors-insight-server.onrender.com/user/${userData.email}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())

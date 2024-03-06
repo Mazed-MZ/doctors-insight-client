@@ -33,7 +33,7 @@ export default function Testimonials() {
     }).then((result) => {
       if (result.isConfirmed) {
         fetch(
-          `http://localhost:5000/addreview/${reviewInfo._id}`,
+          `https://doctors-insight-server.onrender.com/addreview/${reviewInfo._id}`,
           {
             method: "DELETE",
           }

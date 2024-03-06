@@ -75,13 +75,13 @@ const router = createBrowserRouter([
         path: "/updateService/:id",
         element: <UpdateService></UpdateService>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/services/${params.id}`),
+          fetch(`https://doctors-insight-server.onrender.com/services/${params.id}`),
       },
       {
         path: "/updateDoctor/:id",
         element: <UpdateDoctor></UpdateDoctor>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/docInfo/${params.id}`),
+          fetch(`https://doctors-insight-server.onrender.com/docInfo/${params.id}`),
       },
       {
         path: "users",
@@ -95,7 +95,7 @@ const router = createBrowserRouter([
         path: "/payment/:id",
         element: <Payment></Payment>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/appointment-payment/${params.id}`),
+          fetch(`https://doctors-insight-server.onrender.com/appointment-payment/${params.id}`),
       },
       {
         path: "payment-history",

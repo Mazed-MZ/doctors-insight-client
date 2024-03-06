@@ -52,7 +52,7 @@ export default function Feedback() {
       confirmButtonText: "Yes, add it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch("http://localhost:5000/addreview", {
+        fetch("https://doctors-insight-server.onrender.com/addreview", {
           method: "POST",
           headers: {
             "content-type": "application/json",

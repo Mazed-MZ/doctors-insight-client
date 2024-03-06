@@ -42,7 +42,7 @@ export default function Admin() {
         const image = form.image.value;
         const doctorsFiles = { name, speciality, email, image }
         // console.log(doctorsFiles);
-        fetch('http://localhost:5000/addDoctor', {
+        fetch('https://doctors-insight-server.onrender.com/addDoctor', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -74,7 +74,7 @@ export default function Admin() {
     //     formData.append('name', info.name);
     //     formData.append('email', info.email);
 
-    //     fetch('http://localhost:5000/addDoctor', {
+    //     fetch('https://doctors-insight-server.onrender.com/addDoctor', {
     //         method: 'POST',
     //         body: formData
     //     })

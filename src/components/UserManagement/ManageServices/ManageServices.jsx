@@ -23,7 +23,7 @@ export default function ManageServices() {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/services/${serviceData._id}`, {
+                fetch(`https://doctors-insight-server.onrender.com/services/${serviceData._id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())
