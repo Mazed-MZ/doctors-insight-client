@@ -83,13 +83,13 @@ export default function Feedback() {
       </h1>
 
       {reviews ? (
-        <div className="md:ml-96 md:pl-56 mb-12">
+        <div className="md:ml-96 md:pl-72 mb-12">
           <Card
             data-resizable
             sx={{
               textAlign: "center",
               alignItems: "center",
-              width: 500,
+              width: 410,
               // to make the demo resizable
               overflow: "auto",
               resize: "horizontal",
@@ -152,7 +152,7 @@ export default function Feedback() {
             >
               <div className="grid grid-cols-2 gap-2">
                 <Button variant="solid" color="primary">
-                  <Link to="/appointment">Take Appointment</Link>
+                  <Link to="/appointment">Make New Appointment</Link>
                 </Button>
                 <Button variant="solid" color="primary">
                   Surgeons Consultency
@@ -162,13 +162,13 @@ export default function Feedback() {
           </Card>
         </div>
       ) : (
-        <div className="md:ml-96 md:pl-56 mb-12">
+        <div className="md:ml-96 md:pl-72 mb-12">
           <Card
             data-resizable
             sx={{
               textAlign: "center",
               alignItems: "center",
-              width: 500,
+              width: 410,
               // to make the demo resizable
               overflow: "auto",
               resize: "horizontal",
@@ -249,7 +249,7 @@ export default function Feedback() {
             >
               <div className="grid grid-cols-2 gap-2">
                 <Button variant="solid" color="primary">
-                  <Link to="/appointment">Take Appointment</Link>
+                  <Link to="/appointment">Make New Appointment</Link>
                 </Button>
                 <Button variant="solid" color="primary">
                   Surgeons Consultency

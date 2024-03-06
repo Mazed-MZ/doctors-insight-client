@@ -38,13 +38,13 @@ export default function Profile() {
       <h1 className="text-center md:text-5xl text-5xl mt-12 mb-12 md:pt-0">
         User Profile
       </h1>
-      <div className="md:ml-96 md:pl-56 mb-12">
+      <div className="md:ml-96 md:pl-64 mb-12">
         <Card
           data-resizable
           sx={{
             textAlign: "center",
             alignItems: "center",
-            width: 500,
+            width: 410,
             // to make the demo resizable
             overflow: "auto",
             resize: "horizontal",
@@ -162,7 +162,7 @@ export default function Profile() {
           >
             <div className="grid grid-cols-2 gap-2">
               <Button variant="solid" color="primary">
-                <Link to="/feedback">Give your Feedback</Link>
+                <Link to="/feedback">Contribute your insights</Link>
               </Button>
               <Button variant="solid" color="primary">
                 Surgeons Consultency
