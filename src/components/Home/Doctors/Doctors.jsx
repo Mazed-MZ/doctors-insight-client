@@ -7,7 +7,7 @@ export default function Doctors({ docInfo }) {
             <div className="card w-96 bg-base-100 shadow-xl">
                 <figure className="px-10 pt-10">
                     {/* ---->>> for file upload <<<----
-                     <img src={`http://localhost:5000/${doctors.path}`} alt="Shoes" className="rounded-xl" /> */}
+                     <img src={`https://doctors-insight-server.onrender.com/${doctors.path}`} alt="Shoes" className="rounded-xl" /> */}
                     <img src={image} alt="" />
                 </figure>
                 <div className="card-body items-center text-center">
